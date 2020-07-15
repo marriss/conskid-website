@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs')%>
+
+
+</head>
+
+<body>
+    <div class="signup-container">
+        <% if(errorMessage) {%>
+        <div><%=errorMessage %></div>
+        <% }%>
+        <form class="signup-form" method="POST" action action="/signup">
+            <input class="form-controller" type="text" placeholder="First name" name="first_name"></br>
+            <input class="form-controller" type="text" placeholder="Last name" name="last_name"></br>
+            <input class="form-controller" type="text" placeholder="Email address" name="email"></br>
+            <input class="form-controller" type="text" placeholder="Confirm email address" name="confirm_email"></br>
+            <input class="form-controller" type="password" placeholder="Password" name="password"></br>
+            <select class='btn' name="type">
+                <option value="Student">Student</option>
+                <option value="Employer">Employer</option>
+            </select></br>
+            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+            <button class="btn">Signup</button>
+        </form>
+    </div>
+    
+
+    <%- include('../includes/end.ejs') %>

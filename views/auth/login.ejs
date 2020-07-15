@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs')%>
+
+</head>
+
+<body>
+    <div class="login-container">
+        
+        <div class="login-legend">
+            <text>Login</text>
+        </div>
+
+        <form class="login-form" method="POST" action="/login">
+            
+            <% if(errorMessage) {%>
+            <div class="alert alert-danger">
+                <%=errorMessage %>
+            </div>
+            <% }%>
+            
+            <div class="login-form-field">
+                <input  class="form-control" type="text" placeholder="Email address" name="email">
+            </div>
+            
+            <div class="login-form-field">
+                <input class="form-control" type="password" placeholder="Password" name="password">
+            </div>
+
+
+            <div class="login-button"> 
+                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                <button class="btn">Login</button>
+                <a class="login-forgot-password" href="/reset-password">Forgot Password ?</a>      
+            </div>
+                
+            <div class="login-signup-redirect">
+                <text> Don't have an Account? </text><a href="/signup">Signup</a>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../includes/end.ejs') %>
