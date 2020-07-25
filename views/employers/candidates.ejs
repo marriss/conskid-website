@@ -1,9 +1,121 @@
 <%- include('../includes/head.ejs')%>
-
-
 </head>
 
-<body>
+<body class="background-control">
     <%- include('../includes/navigation.ejs') %>
-    <h1>Candidates Page</h1>
+
+    <div class="container candidate-container">
+
+        <% if(msg) { %>
+    <div class="msg">
+        <span class="error-message">
+        
+            <%= msg %>
+            
+        </span>
+    </div>
+    <% } %>
+
+
+        <section id="search" class="search-wrap">
+            <span>Find a candidate</span>
+                <form action="/search" class="search-form">
+                    <i class="fas fa-search"></i>
+                        <input type="search" name="term" placeholder="Javascript, PHP, Development, AI etc...">
+                    <input type="submit" value="Search">
+                </form>
+        </section>
+
+
+        <div class="row">
+            <% if(candidates.length > 0) { %>
+                <% for (let candidate of candidates) {%>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card hover-shadow">
+                                    <div class="card-body text-center pt-1 pb-20">
+                                        
+                                        <% if(candidate.imgUrl) { %>
+                                        <a href="/stu-profile/<%= candidate.userId %>">
+                                            <img class="avatar avatar-xxl" src="./images/profileImages/<%= candidate.imgUrl %>">
+                                        </a>
+                                        <% } else {%>
+                                        <a href="/stu-profile/<%= candidate.userId %>">
+                                            <img class="avatar avatar-xxl" src="./images/defaults/candidate-default.png">
+                                        </a>
+                                        <% } %>
+
+                                        <!-- href="/stu-profile/<%= candidate.userId %>" -->
+                                        <h5 class="mt-2 mb-0"><a class="hover-primary" href="/stu-profile/<%= candidate.userId %>"><%= candidate.firstName %> <%= candidate.lastName %></a></h5>
+                                        <span><%= candidate.title %></span>
+
+                                        <div class="mt-20">
+
+                                            <% if(candidate.skillString) {%>
+                                            <span class="badge-custom"><%= candidate.skillString %></span>
+                                            <% } %>
+                                            <br>
+                                            <% if(candidate.profileString) {%>
+                                            <span class="badge-custom"><%= candidate.profileString %></span>
+                                            <% } %>
+
+                                        </div>
+
+                                    </div>
+
+
+                                            <!-- Confirm Modal -->
+                                            <div class="modal fade" id="confirmModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to arrange an Interview ?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/arrange-interview" method="post">
+                                                <div class="modal-body">
+                                                    <input type="text" class="form-control" id="arrInterview" name="isArrangeInterview" placeholder="Type 'Confirm' to confirm your request"><br>
+                                                    <input type="hidden" name="userId" value="<%= candidate.userId %>">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">  
+                                                    <button type="submit"class="btn btn-primary modelButton" value="">Confirm</button> 
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </form>
+                                                
+                                                </div>
+                                            </div>
+                                            </div>
+                
+                                    
+                                    <footer class="card-footer flexbox">
+                                    <% if (candidate.college) { %>
+                                        <div>
+                                            <i class="fa fa-map-marker pr-1"></i>
+                                            <span><%= candidate.college %></span>
+                                        </div>
+                                      <% } %>  
+                                        <!-- <button type="submit" onclick="arrInterview()" class="btn btn-primary" value="">Arrange Test/Interview</button> -->
+
+                                         <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary arg-interview" data-toggle="modal" data-target="#confirmModel">
+                                            Arrange Test/Interview
+                                            </button>
+
+                                    </footer>
+
+                                    
+                                    
+                            
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+
+                <span class="no-candidate">No Candidates found...</span>
+                
+                <% } %>
+        </div>
+    </div>
+    
     <%- include('../includes/end.ejs') %>

@@ -20,3 +20,107 @@
     margin-bottom: 60px;
 }
 
+
+/* ======= Contact Section ======= */
+
+textarea.style {
+  overflow: auto;
+  resize: vertical;
+  background: #c9e5dc4d;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.contact-body {
+  .contact-container {
+    position: relative;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 26rem;
+    border-radius: 9px;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 29px;
+    background: #5cbaa9e6;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .contact-form {
+    padding: 2rem;
+    padding-top: 8px;
+    padding-bottom: 50px;
+
+    .contact-form-field {
+      padding: 5px;
+    }
+  }
+
+  .alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0.7rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    width: 98%;
+    left: 5px;
+  }
+
+  .form-control-custom {
+    display: block;
+    width: 100%;
+    height: calc(1.76rem + 0.75rem + 2px);
+    padding: 1.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    border: none;
+    background: #c9e5dc4d;
+  }
+
+  .btn-contact {
+    background-color: #00a782;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 7px;
+
+    &:hover {
+      background-color: rgb(4, 66, 90);
+    }
+  }
+}
+
+

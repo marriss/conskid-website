@@ -1,0 +1,1282 @@
+<%- include('../includes/head.ejs')%>
+</head>
+
+<body class="background-profile">
+    <!-- <%- include('../includes/navigation.ejs') %> -->
+
+    <div class="main-body">
+
+        <img src="../images/defaults/cover-1.jpg" alt="">
+        
+
+
+    <div class="pd-20 bootstrap snippets">
+        <div class="row" id="user-profile">
+
+            <!-- Left Sidebar -->
+            <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="main-box clearfix">
+                    <h2><%= userInfo.first_name%> <%= userInfo.last_name %> </h2>
+
+                    <% if(profile.imgUrl) { %>
+                    <% if(isPersonal) { %><img src="./images/profileImages/<%= profile.imgUrl %>" alt=""
+                        class="profile-img img-responsive center-block"><% } %>
+
+                    <% if(!isPersonal) { %><img src="../images/profileImages/<%= profile.imgUrl %>" alt=""
+                        class="profile-img img-responsive center-block"><% } %>
+                    <% } else {%>
+                        <% if(isPersonal) { %><img src="./images/defaults/candidate-default.png" alt=""
+                        class="profile-img img-responsive center-block"><% } %>
+
+                         <% if(!isPersonal) { %><img src="../images/defaults/candidate-default.png" alt=""
+                        class="profile-img img-responsive center-block"><% } %>
+                    <% } %>
+
+                     
+                    <% if(isPersonal) { %>
+                    <div class="img-upload">
+                        <form class="img-upload-form" action="/imgUpload" method="post" enctype="multipart/form-data">
+                            <input  class="form-control choose" type="file" name="image" id="image">
+                            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit" class="btn btn-primary choose-btn">Upload</button>
+                        </form>
+                    </div>
+                    <% } %>
+
+                        
+                    <div class="profile-label">
+                        <span class="label label-danger"><strong><%= profile.title %></strong></span>
+                    </div>
+
+                    <% if(profile.headline) { %>
+                    <div class="profile-since">
+                        <%= profile.headline%>
+                    </div>
+                    <% } %>
+
+                    <div class="badge-main">
+
+                    <% if(profile.skillString) { %>
+                    <span class="profile-badge"><%= profile.skillString %></span>
+                    <% } %>
+                    <br>
+                    <% if(profile.profileString) {%>
+                    <span class="profile-badge"><%= profile.profileString %></span>
+                    <% } %>
+
+                    </div>
+
+
+                    <div class="profile-details">
+                        <ul class="fa-ul">
+                            <% if(profile.experienceQty > 0) { %> <li><i class="fas fa-bookmark"></i>      Experiences: <span><%= profile.experienceQty%></span></li> <% } %>
+                            <% if(profile.achievementQty > 0) { %> <li><i class="fas fa-award"></i>     Achievements: <span><%= profile.achievementQty%></span></li> <% } %>
+                            <% if(profile.projectQty > 0) { %> <li><i class="fas fa-tablet"></i>     Projects: <span><%= profile.projectQty%></span></li> <% } %>
+                            <% if(profile.certificationQty > 0) { %> <li><i class="fas fa-certificate"></i>     Certifications: <span><%= profile.certificationQty%></span></li> <% } %>
+                        </ul>
+                    </div>
+
+                    <% if(isPersonal) { %>
+                    <div class="profile-header">
+                        <button type="button" class="btn btn-primary edit-profile fas fa-user-edit" data-toggle="modal" data-target="#thingModal">
+                        </button>
+                    </div>
+                    <% } %>
+
+                    
+    
+                    <!-- ============================== Thing Modal ======================================== -->        
+                    <div class="modal fade" id="thingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Your Thing.</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="/editThing" method="post">
+                                    <div class="modal-body">
+                                        
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Thing:</label>
+                                                <input type="text" name="title" class="form-control" id="firstName"  maxlength="44" aria-describedby="firstNameHelp"
+                                                    value="<%= profile.title %>" required>
+                                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Headline:</label>
+                                                <textarea rows="4" cols="57" type="text" name="headline" class="form-control" id="lastName"value="<%= profile.headline %>"></textarea>
+                                            </div>
+                                            
+
+                                            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                            <button type="submit" name="submitUserInfo" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================= Thing Modal end ========================================== -->
+                    
+                    <!-- ============================= Thing button ==================================== -->
+
+                </div>
+        
+            </div>
+
+
+    
+            <!-- Right Sidebar -->
+            <div class="col-lg-9 col-md-8 col-sm-8">
+                <div class="main-box clearfix">
+<!-- ============================================================================================================================================== -->
+
+
+
+<!-- ========================================================== Profile Header =========================================================================== -->
+
+                    <!-- ============================== User Info Modal ======================================== -->        
+                    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Info.</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="/editUserInfo" method="post">
+                                    <div class="modal-body">
+                                        
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputEmail1">First Name:</label> -->
+                                                <input type="text" name="firstName" class="form-control" id="firstName"  aria-describedby="firstNameHelp"
+                                                    placeholder="First name" value="<%= userInfo.first_name %>">
+                                                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Last Name:</label> -->
+                                                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Last name" value="<%= userInfo.last_name %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="<%= userInfo.address %>">
+                                            </div>
+                                            <!-- <div class="form-group"> -->
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <!-- <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<%= userInfo.email %>">
+                                            </div> -->
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone" value="<%= userInfo.phone %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="github" class="form-control" id="github" placeholder="Github" value="<%= userInfo.github %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="linkedIn" class="form-control" id="linkedIn" placeholder="LinkedIn" value="<%= userInfo.linkedin %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="instagram" class="form-control" id="instagram" placeholder="Instagram" value="<%= userInfo.instagram %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="facebook" class="form-control" id="facebook" placeholder="Facebook" value="<%= userInfo.facebook %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="twitter" class="form-control" id="twitter" placeholder="Twiter" value="<%= userInfo.twitter %>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                <input type="text" name="skype" class="form-control" id="skype" placeholder="skype" value="<%= userInfo.skype %>">
+                                            </div>
+
+                                            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                            <button type="submit" name="submitUserInfo" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================= User Info Modal end ========================================== -->
+                    
+                    <!-- ============================= User Info title and button ==================================== -->
+                    <div class="profile-header">
+                        <h3 ><i class='fas fa-user profile-icons'></i><span >User Info</span></h3>
+                        <!-- <a href="#" class="btn btn-primary edit-profile">
+                            <i class="fa fa-pencil-square fa-lg"></i> Edit profile
+                        </a> -->
+                        <!-- Button trigger modal -->
+                        <% if(isPersonal) { %>
+                        <button type="button" class="btn btn-primary edit-profile fas fa-user-edit" data-toggle="modal" data-target="#userModal">
+                        </button>
+                        <% } %>
+                    </div>
+
+                    <!-- ============================== Row User Profile Info ================================== -->
+                    <!-- Dynamically add User data -->
+                    
+                    <div class="row profile-user-info">
+                        <div class="col-sm-6">
+                            <div class="profile-user-details clearfix">
+                                <div class="profile-user-details-label">
+                                    First Name
+                                </div>
+                                <div class="profile-user-details-value">
+                                    <%= userInfo.first_name %>
+                                </div>
+                            </div>
+                            <div class="profile-user-details clearfix">
+                                <div class="profile-user-details-label">
+                                    Last Name
+                                </div>
+                                <div class="profile-user-details-value">
+                                   <%= userInfo.last_name %>
+                                </div>
+                            </div>
+                            <% if(userInfo.address) { %>
+                            <div class="profile-user-details clearfix">
+                                <div class="profile-user-details-label">
+                                    Address
+                                </div>
+                                <div class="profile-user-details-value">
+                                    <%= userInfo.address %>
+                                </div>
+                            </div>
+                            <% } %>
+                            <div class="profile-user-details clearfix">
+                                <div class="profile-user-details-label">
+                                    Email
+                                </div>
+                                <div class="profile-user-details-value">
+                                    <%= user.email %>
+                                </div>
+                            </div>
+
+                            <% if(userInfo.phone) { %>
+                            <div class="profile-user-details clearfix">
+                                <div class="profile-user-details-label">
+                                    Phone number
+                                </div>
+                                <div class="profile-user-details-value">
+                                    <%= userInfo.phone %>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                        <div class="col-sm-6 profile-social">
+                            <ul class="fa-ul">
+                                <% if(userInfo.github) { %><li><i class="fab fa-github"></i><a href="<%= userInfo.github %> ">  <%= userInfo.github %> </a></li> <% } %>
+                                <% if(userInfo.linkedin) { %><li><i class="fab fa-linkedin"></i><a href="<%= userInfo.linkedin %> ">  @ <%= userInfo.linkedin %> </a></li> <% } %>
+                                <% if(userInfo.instagram) { %><li><i class="fab fa-instagram"></i><a href="<%= userInfo.instagram %> ">  <%= userInfo.instagram %>  </a></li> <% } %>
+                                <% if(userInfo.facebook) { %><li><i class="fab fa-facebook"></i><a href="<%= userInfo.facebook %> ">   <%= userInfo.facebook %>  </a></li> <% } %>
+                                <% if(userInfo.skype) { %><li><i class="fab fa-skype"></i><a href="<%= userInfo.skype %>"  >  <%= userInfo.skype %> </a></li> <% } %>
+                                <% if(userInfo.twitter) { %><li><i class="fab fa-twitter"></i><a href="<%= userInfo.twitter %>">  <%= userInfo.twitter %> </a></li> <% } %>
+                            </ul>
+                        </div>
+                    </div> 
+                   
+
+                    <!-- ============================== Row User Profile Info End ====================================== -->
+
+<!-- ======================================================= Profile Header end ===================================================================== -->
+                    
+    
+<!-- ======================================================= Profile Tabs ========================================================================= -->
+                    <div class="tabs-wrapper profile-tabs">
+
+                        <!-- ============================= Profile Tabs Navigation bar =================================== -->
+                        <div class="row ">
+                            <ul class="nav nav-tabs navbar-items profile-tabs-navigation-bar">
+                                <li class="  items active"><a href="#tab-education" data-toggle="tab"><strong>Education</strong></a></li>
+                                <li class="  items" ><a href="#tab-experience" data-toggle="tab"><strong>Experience</strong></a></li>
+                                <li class="  items"><a href="#tab-achievements" data-toggle="tab"><strong>Achievements</strong></a></li>
+                                <li class="  items"><a href="#tab-projects" data-toggle="tab"><strong>Projects</strong></a></li>
+                                <li class="  items"><a href="#tab-certifications" data-toggle="tab"><strong>Certifications</strong></a></li>
+                            </ul>
+                        </div>
+                        <!-- ============================= Profile Tabs Navigation bar end =============================== -->
+
+
+                        <!--============================== Profile Tabs content=========================================== -->
+                        <div class="tab-content">
+                            
+                            <!-- ============================== Education bar ============================================ -->
+                            <div class="tab-pane fade-in  active" id="tab-education">
+                                    <!-- ============================== Education Modal ======================================== -->
+                                    <div class="modal fade" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="educationModalLabel"
+                                        aria-hidden="true"> 
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add Education.</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/addEducation" method="post">
+                                                    <div class="modal-body"> 
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                                            <input type="text" name="school" class="form-control" id="school" aria-describedby="schoolHelp"
+                                                                placeholder="School" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="degree" class="form-control" id="degree" placeholder="Degree">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="fieldOfStudy" class="form-control" id="fieldOfStudy" placeholder="Field of Study">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="startYear" class="form-control" id="startYear" placeholder="Start year">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="endYear" class="form-control" id="endYear" placeholder="End Year">
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="Activities">Activities:</label>
+                                                            <textarea rows="4" cols="57" class="form-control big-text" id="activities" name="activities">
+                                                            </textarea>
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea rows="4" cols="57" class="form-control" id="description" name="description">                                                      
+                                                            </textarea>
+                                                        </div>
+
+                                                        <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                        <button type="submit" id="education" name="whichButtonPressed" value="studentEducation" class="btn btn-primary ">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================== Education Modal end ==================================== -->
+                                    
+                                    <!-- ============================== Education Modal button ================================= -->
+                                    <div class="profile-header">
+                                        <h3><i class='fas fa-graduation-cap profile-icons'></i><span>Education</span></h3>
+                                        <!-- Button trigger modal -->
+                                        <% if(isPersonal) { %>
+                                        <button type="button" class="btn btn-primary edit-profile " data-toggle="modal" data-target="#educationModal">
+                                        Add Education
+                                        </button>
+                                        <% } %>
+                                    </div>
+
+
+                                    <!-- ============================== Dynamically Outputing data ============================= -->
+
+                                    <% if(educations.length > 0) {%>
+
+                                        <% for (let education of educations) { %>
+
+                                        <!-- ============================== Edit Education Modal ======================================== -->
+                                        <div class="modal fade" id="edit-education-modal-<%= education.id %>" tabindex="-1" role="dialog" aria-labelledby="editEducationModalLabel"
+                                            aria-hidden="true"> 
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Education.</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="/editEducation" method="post">
+                                                        <div class="modal-body"> 
+                                                            <div class="form-group">
+                                                                <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                                                <input type="text" name="school" class="form-control" id="school" aria-describedby="schoolHelp"
+                                                                    placeholder="School" value="<%= education.school %>" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                                <input type="text" name="degree" class="form-control" id="degree" placeholder="Degree" value="<%= education.degree %>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                                <input type="text" name="fieldOfStudy" class="form-control" id="fieldOfStudy" placeholder="Field of Study" value="<%= education.fieldOfStudy %>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                                <input type="text" name="startYear" class="form-control" id="startYear" placeholder="Start year" value="<%= education.startYear %>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                                <input type="text" name="endYear" class="form-control" id="endYear" placeholder="End Year" value="<%= education.endYear %>">
+                                                            </div>
+                                        
+                                                            <div class="form-group">
+                                                                <label for="Activities">Activities:</label>
+                                                                <textarea rows="4" cols="57" class="form-control" id="activities" name="activities" value="<%= education.activities %>">
+                                                                <%= education.activities %>
+                                                                </textarea>
+                                                            </div>
+                                        
+                                                            <div class="form-group">
+                                                                <label for="description">Description:</label>
+                                                                <textarea rows="4" cols="57" class="form-control" id="description" name="description" value="<%= education.description %>">                                                      
+                                                                <%= education.description %>
+                                                                </textarea>
+                                                            </div>
+
+                                                            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                            <input type="hidden" name="educationId" value="<%= education.id %>">
+                                                            <button type="submit" id="education" name="whichButtonPressed" value="studentEducation" class="btn btn-primary ">Submit</button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </form>
+                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ============================== Edit Education Modal end ==================================== -->
+
+                                        <div class="education">
+
+                                            <% if(education.school) { %>
+                                            
+                                            <div class="school">
+                                                <i class="fas fa-school"></i>
+                                                <strong><%=  education.school  %></strong>
+                                                <% if(education.startYear && education.endYear) { %>
+                                                <small class="year"><%= education.startYear + "-" + education.endYear %></small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(education.degree) { %>
+                                            <div class="degree">
+                                                <span><%=  education.degree  %></span>
+                                                <% if(education.fieldOfStudy) { %>
+                                                <small class="fieldOfStudy"><%= "-  " + education.fieldOfStudy%></small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(education.activities) { %>
+                                            <div class="activities">
+                                                <strong>Activities: </strong><span><%=  education.activities %></span>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(education.description) { %>
+                                            <div class="description">
+                                                <strong>Description: </strong> <span><%= education.description %></span>
+
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                                <% if(isPersonal) { %>
+                                                <form action="/deleteEducation" method="post">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="hidden" name="educationId" value="<%= education.id %>">
+                                                <button type="submit" id="education" class="fas fa-trash-alt btn btn-primary delete-edit"></button>
+                                                </form>
+
+                                                <button type="submit" id="education" class="fas fa-edit btn btn-primary delete-edit" data-toggle="modal" data-target="#edit-education-modal-<%= education.id %>"></button>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <hr>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <!-- ============================== Dynamically Outputing data end ============================= -->                                 
+                            </div>
+                            <!-- =============================== Education bar end ======================================= -->
+    
+                        
+                            <!-- =============================== Experience bar =========================================== -->
+                            <div class="tab-pane fade" id="tab-experience">
+                                    <!-- ============================== Experience Modal ======================================== -->
+                                    
+                                    <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="experienceModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add Experience</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/addExperience" method="post">
+                                                    <div class="modal-body">
+                                    
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                                            <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                                placeholder="Title" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="employmentType" class="form-control" id="employmentType" placeholder="Employment Type">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="company" class="form-control" id="company"
+                                                                placeholder="Company">
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="location" class="form-control" id="location"
+                                                                placeholder="Location">
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="startDate">Start Date:</label>
+                                                            <input type="date" name="startDate" class="form-control" id="startDate"
+                                                                placeholder="Start Date" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDate">End date:</label>
+                                                            <input type="date" name="endDate" class="form-control" id="endDate" placeholder="End Date" required>
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="headline">Headline:</label>
+                                                            <textarea rows="3" cols="57" class="form-control" id="headline" name="headline">
+                                                            </textarea>
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea rows="4" cols="57" class="form-control" id="description" name="description">
+                                                            </textarea>
+                                                        </div>
+                                                        
+                                                        <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                        <button type="submit" name="wchichButtonPressed" value="submitExperience"class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        
+                                                    </div>
+                                                </form>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================= Experience Modal end ====================================== -->
+
+                                    <!-- ============================= Experience Modal button end =================================== -->
+
+                                    <div class="profile-header">
+                                        <h3><i class='fas fa-book-reader profile-icons'></i><span>Experience</span></h3>
+
+                                        <% if(isPersonal) { %>
+                                        <button type="button" class="btn btn-primary edit-profile" data-toggle="modal" data-target="#experienceModal">
+                                            Add Experience
+                                        </button>
+                                        <% } %>
+                                    </div>
+
+
+                                    <!-- ============================== Dynamically Outputing data ============================= -->
+
+                                    <% if(experiences.length > 0) {%>
+
+                                        <% for (let experience of experiences) { %>
+
+                                        <!-- ============================== Edit experience Modal ======================================== -->
+                                        <div class="modal fade" id="edit-experience-modal-<%= experience.id %>" tabindex="-1" role="dialog" aria-labelledby="experienceModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Experience</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/editExperience" method="post">
+                                                    <div class="modal-body">
+                                    
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                                            <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                                placeholder="Title" value="<%= experience.title %>" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="employmentType" class="form-control" id="employmentType" placeholder="Employment Type" value="<%= experience.employmentType %>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="company" class="form-control" id="company"
+                                                                placeholder="Company" value="<%= experience.company %>">
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                                            <input type="text" name="location" class="form-control" id="location"
+                                                                placeholder="Location" value="<%= experience.location %>">
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="startDate">Start Date:</label>
+                                                            <input type="date" name="startDate" class="form-control" id="startDate"
+                                                                placeholder="Start Date" value="<%= experience.startDate %>" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDate">End date:</label>
+                                                            <input type="date" name="endDate" class="form-control" id="endDate" placeholder="End Date" value="<%= experience.endDate %>" required>
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="headline">Headline:</label>
+                                                            <textarea rows="4" cols="57" class="form-control" id="headline" name="headline" value="<%= experience.headline %>">
+                                                            <%= experience.headline%>
+                                                            </textarea>
+                                                        </div>
+                                    
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea rows="4" cols="57" class="form-control" id="description" name="description" value="<%= experience.description %>">
+                                                            <%= experience.description%>
+                                                            </textarea>
+                                                        </div>
+                                                        
+                                                        <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                        <input type='hidden' name="experienceId" value="<%= experience.id %>">
+                                                        <button type="submit" name="wchichButtonPressed" value="submitExperience"class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        
+                                                    </div>
+                                                </form>
+                                    
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <!-- ============================== Edit experience Modal end ==================================== -->
+
+                                        <div class="education">
+
+                                            <% if(experience.title) { %>
+                                            
+                                            <div class="school">
+                                                <i class="fas fa-bookmark"></i>
+                                                <strong><%=  experience.employmentType  %> | </strong>
+                                                <strong><%=  experience.title  %></strong><br>
+                                                <% if(experience.startDate && experience.endDate) { %>
+                                                <small class="year"><%= experience.startDate.getDate() %>/<%= experience.startDate.getMonth() %>/<%= experience.startDate.getFullYear()  %> - 
+                                                <%= experience.endDate.getDate() %>/<%= experience.endDate.getMonth() %>/<%= experience.endDate.getFullYear() %>
+                                                </small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(experience.location) { %>
+                                            <div class="degree">
+                                                <span><%=  experience.location  %></span>
+                                                <% if(experience.company) { %>
+                                                <small class="fieldOfStudy"> - <%= experience.company %></small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(experience.headline) { %>
+                                            <div class="activities">
+                                                <span><%=  experience.headline %></span>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(experience.description) { %>
+                                            <div class="description">
+                                                <span><%= experience.description %></span>
+
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                                <% if(isPersonal) { %>
+                                                <form action="/deleteExperience" method="post">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="hidden" name="experienceId" value="<%= experience.id %>">
+                                                <button type="submit" id="education" class="fas fa-trash-alt btn btn-primary delete-edit"></button>
+                                                </form>
+
+                                                <button type="submit" id="education" class="fas fa-edit btn btn-primary delete-edit" data-toggle="modal" data-target="#edit-experience-modal-<%= experience.id %>"></button>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <hr>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <!-- ============================== Dynamically Outputing data end ============================= --> 
+                            </div>
+                            <!-- =============================== Experience bar end ======================================= -->
+    
+
+                            <!-- ================================= Achievements  bar ==================================== -->
+                            <div class="tab-pane fade" id="tab-achievements">
+
+                                <!-- ============================== Achievments Modal ======================================== -->
+                                
+                                <div class="modal fade" id="achievementsModal" tabindex="-1" role="dialog" aria-labelledby="achievementsModal" 
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Add Achievements</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/addAchievement" method="post">
+                                                <div class="modal-body">
+                                
+                                                    <div class="form-group">
+                                                        <label for="title">Title:</label>
+                                                        <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                            placeholder="Title" required>
+                                                    </div>
+                                                    
+                                
+                                                    <div class="form-group">
+                                                        <label for="description">Description:</label>
+                                                        <textarea rows="4" cols="57"class="form-control" id="description" name="description" >
+                                                        </textarea>
+                                                    </div>
+                                
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <button type="submit" name="wchichButtonPressed" value="submitAchievement" class="btn btn-primary">Submit</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ============================= Achievments Modal end ========================================== -->
+
+                                <!-- ============================= Achievments Modal button end ========================================== -->
+                                
+                                <div class="profile-header">
+                                    <h3><i class='fas fa-award profile-icons'></i><span>Achievements</span></h3>
+                                    
+                                    <% if(isPersonal) { %>
+                                    <button type="button" class="btn btn-primary edit-profile" data-toggle="modal" data-target="#achievementsModal">
+                                        Add Achievements
+                                    </button>
+                                    <% } %>
+                                </div>
+
+                                <!-- ============================== Dynamically Outputing data ============================= -->
+
+                                <% if(achievements.length > 0) {%>
+
+                                    <% for (let achievement of achievements) {%> %>
+
+                                        <!-- ============================== Achievments Edit Modal ======================================== -->
+                                
+                                        <div class="modal fade" id="edit-achievement-modal-<%= achievement.id %>" tabindex="-1" role="dialog" aria-labelledby="achievementsModal"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Add Achievements</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="/editAchievement" method="post">
+                                                        <div class="modal-body">
+                                        
+                                                            <div class="form-group">
+                                                                <label for="title">Title:</label>
+                                                                <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                                    placeholder="Title" value = "<%=achievement.title%>" required>
+                                                            </div>
+                                                            
+                                        
+                                                            <div class="form-group">
+                                                                <label for="description">Description:</label>
+                                                                <tesxtarea rows="2" cols="57"  class="form-control" id="description" name="description">
+                                                                <%=achievement.description%>
+                                                                </tesxtarea>
+                                                            </div>
+                                        
+                                                            <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                            <input type='hidden' name="achievementId" value="<%= achievement.id %>">
+                                                            <button type="submit" name="wchichButtonPressed" value="submitAchievement" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </form>
+                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ============================= Achievments Modal end ========================================== -->
+
+                                        <div class="education">
+
+                                            <% if(achievement.title) { %>
+                                            
+                                            <div class="school">
+                                                <i class="fas fa-award"></i>
+                                                <strong><%=  achievement.title  %></strong>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(achievement.description) { %>
+                                            <div class="description">
+                                                <span><%= achievement.description %></span>
+
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                                <% if(isPersonal) { %>
+                                                <form action="/deleteAchievement" method="post">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="hidden" name="achievementId" value="<%= achievement.id %>">
+                                                <button type="submit" id="education" class="fas fa-trash-alt btn btn-primary delete-edit"></button>
+                                                </form>
+
+                                                <button type="submit" id="education" class="fas fa-edit btn btn-primary delete-edit" data-toggle="modal" data-target="#edit-achievement-modal-<%= achievement.id %>"></button>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <hr>
+
+
+                                    <% } %>
+                                <% } %>
+                                
+                                <!-- ============================== Dynamically Outputing data end ============================= --> 
+
+                            </div>
+                            <!-- ================================ Achivements bar end==================================== -->
+
+
+                            <!-- ================================= Projects  bar ==================================== -->
+                            <div class="tab-pane fade" id="tab-projects">
+
+                            <!-- ============================== projects Modal ======================================== -->
+                            <div class="modal fade" id="projectsModal" tabindex="-1" role="dialog" aria-labelledby="projectsModal"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Projects</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="/addProject" method="post">
+                                            <div class="modal-body">
+                            
+                                                <div class="form-group">
+                                                    <label for="title">Title:</label>
+                                                    <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                        placeholder="Title" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="startDate">Start Date:</label>
+                                                    <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="startDateHelp" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="endDate">End Date:</label>
+                                                    <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="endDateHelp" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="link">Link</label>
+                                                    <input type="text" name="link" class="form-control" id="link" aria-describedby="linkHelp">
+                                                </div>
+                            
+                            
+                                                <div class="form-group">
+                                                    <label for="description">Description:</label>
+                                                    <textarea rows="4" cols="57" class="form-control" id="description" name="description" type="text">
+                                                    </textarea>
+                                                </div>
+                            
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                <button type="submit" name="wchichButtonPressed" value="submitProject"class="btn btn-primary">Submit</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                            
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================= projects Modal end ========================================== -->
+
+                            <div class="profile-header">
+                                <h3><i class='fas fa-laptop-code profile-icons'></i><span>Projects</span></h3>
+
+                                <% if(isPersonal) { %>
+                                <button type="button" class="btn btn-primary edit-profile" data-toggle="modal" data-target="#projectsModal">
+                                    Add Projects
+                                </button>
+                                <% } %>
+                            </div>
+
+
+                            <!-- ============================== Dynamically Outputing data ============================= -->
+
+                                <% if(projects.length > 0) {%>
+
+                                    <% for (let project of projects) { %>
+
+                                    <!-- ============================== Edit projects Modal ======================================== -->
+                                    <div class="modal fade" id="edit-project-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="projectsModal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add Projects</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/editProject" method="post">
+                                                    <div class="modal-body">
+                                    
+                                                        <div class="form-group">
+                                                            <label for="title">Title:</label>
+                                                            <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                                placeholder="Title" value="<%= project.title %>" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="startDate">Start Date:</label>
+                                                            <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="startDateHelp" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="endDate">End Date:</label>
+                                                            <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="endDateHelp" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="link">Link</label>
+                                                            <input type="text" name="link" class="form-control" id="link" aria-describedby="linkHelp" value="<%= project.link %>">
+                                                        </div>
+                                    
+                                    
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea rows="4" cols="57" class="form-control" id="description" name="description"  type="text">
+                                                            <%= project.description %>    
+                                                            </textarea>                                                                                                                                </input>
+                                                        </div>
+                                    
+                                                        <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                        <input type='hidden' name="projectId" value="<%= project.id %>" >
+                                                        <button type="submit" name="wchichButtonPressed" value="submitProject"class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================= projects Modal end ========================================== -->
+
+                                    <div class="education">
+
+                                            <% if(project.title) { %>
+                                            
+                                            <div class="school">
+                                                <i class="fas fa-tablet"></i>
+                                                <strong><%=  project.title  %></strong><br>
+                                                <% if(project.startDate && project.endDate) { %>
+                                                <small class="year"><%= project.startDate.getDate() %>/<%= project.startDate.getMonth() %>/<%= project.startDate.getFullYear()  %> - 
+                                                <%= project.endDate.getDate() %>/<%= project.endDate.getMonth() %>/<%= project.endDate.getFullYear() %>
+                                                </small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(project.link) { %>
+                                            <div class="degree">
+                                                <a href="<%=  project.link  %>" ><%=  project.link  %></a>
+                                            </div>
+                                            <% } %>
+
+                                            
+                                            <% if(project.description) { %>
+                                            <div class="description">
+                                                <span><%= project.description %></span>
+
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                                <% if(isPersonal) { %>
+                                                <form action="/deleteProject" method="post">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="hidden" name="projectId" value="<%= project.id %>">
+                                                <button type="submit" id="education" class="fas fa-trash-alt btn btn-primary delete-edit"></button>
+                                                </form>
+
+                                                <button type="submit" id="education" class="fas fa-edit btn btn-primary delete-edit" data-toggle="modal" data-target="#edit-project-modal-<%= project.id %>"></button>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    
+                                    <hr>
+
+                                    <% } %>
+                                <% } %>
+
+                            <!-- ============================== Dynamically Outputing data end ============================= -->
+
+                            </div>
+
+                            <!-- ================================ Projects bar end==================================== -->
+
+
+                            <!-- ================================= Certifications  bar ==================================== -->
+
+                            <div class="tab-pane fade" id="tab-certifications">
+
+                                <!-- ============================= Certifications Modal ============================================== -->
+                                <div class="modal fade" id="certificationsModal" tabindex="-1" role="dialog" aria-labelledby="certificationsModal"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Add Certification</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="/addCertification" method="post">
+                                                <div class="modal-body">
+                                
+                                                    <div class="form-group">
+                                                        <label for="title">Title</label>
+                                                        <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                            placeholder="title" required>
+                                                    </div>
+                                
+                                                    <div class="form-group">
+                                                        <label for="startDate">Start Date</label>
+                                                        <input type="date" name="startDate" class="form-control" id="startDate"
+                                                            aria-describedby="startDateHelp" required>
+                                                    </div>
+                                
+                                                    <div class="form-group">
+                                                        <label for="endDate">End Date</label>
+                                                        <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="endDateHelp" required>
+                                                    </div>
+                                
+                                                    <div class="form-group">
+                                                        <label for="link">Link</label>
+                                                        <input type="text" id="link" name="link" class="form-control" id="link"
+                                                            aria-describedby="linkHelp">
+                                                    </div>
+                                
+                                
+                                                    <div class="form-group">
+                                                        <label for="description">Description</label>
+                                                        <textarea rows="4" cols="57" class="form-control" id="description" name="description" type="text">   
+                                                        </textarea>                                                                                                                                                        </input>
+                                                    </div>
+                                
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <button type="submit" name="wchichButtonPressed" value="submitCertification"class="btn btn-primary">Submit</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ============================= Certifications Modal end ========================================== -->
+
+                                <div class="profile-header">
+                                    <h3><i class="fa fa-certificate profile-icons" aria-hidden="true"></i><span>Certifications</span></h3>
+                                   <% if(isPersonal) { %>
+                                    <button type="button" class="btn btn-primary edit-profile" data-toggle="modal" data-target="#certificationsModal">
+                                        Add Certifications
+                                    </button>
+                                    <% } %>
+                                </div>
+
+                                <!-- ============================== Dynamically Outputing data ============================= -->
+
+                                <% if(certifications.length > 0) {%>
+
+                                    <% for (let certification of certifications) { %>
+
+                                    <!-- ============================== Edit certification Modal ======================================== -->
+                                    <div class="modal fade" id="edit-certification-modal-<%= certification.id %>" tabindex="-1" role="dialog" aria-labelledby="projectsModal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add Certifications</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/editCertification" method="post">
+                                                    <div class="modal-body">
+                                    
+                                                        <div class="form-group">
+                                                            <label for="title">Title:</label>
+                                                            <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+                                                                placeholder="Title" value="<%= certification.title %>" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="startDate">Start Date:</label>
+                                                            <input type="date" name="startDate" class="form-control" id="startDate" aria-describedby="startDateHelp" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="endDate">End Date:</label>
+                                                            <input type="date" name="endDate" class="form-control" id="endDate" aria-describedby="endDateHelp" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="link">Link</label>
+                                                            <input type="text" name="link" class="form-control" id="link" aria-describedby="linkHelp" value="<%= certification.link %>">
+                                                        </div>
+                                    
+                                    
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea rows="4" cols="57"class="form-control" id="description" name="description" type="text">
+                                                            <%= certification.description %>    
+                                                            </textarea>
+                                                        </div>
+                                    
+                                                        <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                        <input type='hidden' name="certificationId" value="<%= certification.id %>" >
+                                                        <button type="submit" name="wchichButtonPressed" value="submitProject"class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================= certification Modal end ========================================== -->
+
+                                    <div class="education">
+
+                                            <% if(certification.title) { %>
+                                            
+                                            <div class="school">
+                                                <i class="fas fa-certificate"></i>
+                                                <strong><%=  certification.title  %></strong><br>
+                                                <% if(certification.startDate && certification.endDate) { %>
+                                                <small class="year"><%= certification.startDate.getDate() %>/<%= certification.startDate.getMonth() %>/<%= certification.startDate.getFullYear()  %> - 
+                                                <%= certification.endDate.getDate() %>/<%= certification.endDate.getMonth() %>/<%= certification.endDate.getFullYear() %>
+                                                </small>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+
+                                            <% if(certification.link) { %>
+                                            <div class="degree">
+                                                <a href="<%=  certification.link  %>" ><%=  certification.link  %></a>
+                                            </div>
+                                            <% } %>
+
+                                            
+                                            <% if(certification.description) { %>
+                                            <div class="description">
+                                                <span><%= certification.description %></span>
+
+                                                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+
+                                                <% if(isPersonal) { %>
+                                                <form action="/deleteCertification" method="post">
+                                                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="hidden" name="certificationId" value="<%= certification.id %>">
+                                                <button type="submit" id="education" class="fas fa-trash-alt btn btn-primary delete-edit"></button>
+                                                </form>
+
+                                                <button type="submit" id="education" class="fas fa-edit btn btn-primary delete-edit" data-toggle="modal" data-target="#edit-certification-modal-<%= certification.id %>"></button>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    
+                                    <hr>
+
+                                    <% } %>
+                                <% } %>
+
+                            <!-- ============================== Dynamically Outputing data end ============================= -->
+
+
+                            </div>
+                            <!-- ================================ Certifications bar end==================================== -->
+
+
+                        </div>
+                        <!-- ================================= Navbar content end========================================================== -->
+                    </div>
+<!-- ===================================================== Profile Tabs end====================================== -->
+    
+                    </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    </div>
+
+
+    <%- include('../includes/end.ejs') %>

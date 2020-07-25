@@ -1,0 +1,41 @@
+<%- include('includes/head.ejs')%>
+    </head>
+
+    <body class="contact-body">
+
+
+        <div class="contact-container contact">
+
+            <h4>SEND US A MESSAGE</h4>
+
+            <form class="contact-form" action="/contact-form" method="post">
+
+                <div class="contact-form-field">
+                    <input class="form-control-custom" type="text" name="name" placeholder="Name">
+                </div>
+
+                <div class="contact-form-field">
+                    <input class="form-control-custom" type="email" name="email" placeholder="Email">
+                </div>
+
+                <div class="contact-form-field">
+                    <input class="form-control-custom" type="text" name="phone" placeholder="Phone">
+                </div>
+
+                <div class="contact-form-field">
+                    <textarea class="style" rows="10" cols="57" type="text" name="message" placeholder="Type your message"></textarea>
+                </div>
+
+                <div>
+                    <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn-contact">Send Message</button>
+                </div>
+                
+            </form>
+
+        </div>
+
+        
+
+
+    <%- include('includes/end.ejs') %>

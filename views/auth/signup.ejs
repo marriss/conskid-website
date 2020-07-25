@@ -3,23 +3,66 @@
 
 </head>
 
-<body>
+<body class="background">
     <div class="signup-container">
-        <% if(errorMessage) {%>
-        <div><%=errorMessage %></div>
-        <% }%>
+        
+        <div class="signup-legend">
+        </div>
+
+        
+
         <form class="signup-form" method="POST" action action="/signup">
-            <input class="form-controller" type="text" placeholder="First name" name="first_name"></br>
-            <input class="form-controller" type="text" placeholder="Last name" name="last_name"></br>
-            <input class="form-controller" type="text" placeholder="Email address" name="email"></br>
-            <input class="form-controller" type="text" placeholder="Confirm email address" name="confirm_email"></br>
-            <input class="form-controller" type="password" placeholder="Password" name="password"></br>
-            <select class='btn' name="type">
-                <option value="Student">Student</option>
-                <option value="Employer">Employer</option>
-            </select></br>
+
+            <% if(errorMessage) {%>
+            <div class="alert alert-danger">
+                <%=errorMessage %>
+            </div>
+            <% }%>
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="text" placeholder="First name" name="first_name" value='<%= oldInput.first_name %>' >
+                        </div>
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="text" placeholder="Email address" name="email" value='<%= oldInput.email %>' >
+                        </div>
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="row signup-form-field">
+                            <select class='user-type right' name="type">
+                                <option class="option-text" value="signup">Signup as</option>
+                                <option class="option-text" value="student">Student</option>
+                                <option class="option-text" value="employer">Employer</option>
+                            </select>
+                        </div> 
+                </div>
+
+                <div class="col-sm-6">
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="text" placeholder="Last name" name="last_name" value='<%= oldInput.last_name %>' >
+                        </div>
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="text" placeholder="Phone" name="phone">
+                        </div>
+
+                        <div class="row signup-form-field">
+                            <input class="form-control-custom" type="password" placeholder="Confirm Password" name="confirm_password">
+                        </div>
+                </div>
+
+            </div>
             <input type='hidden' name="_csrf" value="<%= csrfToken %>">
-            <button class="btn">Signup</button>
+
+            <div class="signup-button">
+                <button class="btn">Signup</button>
+            </div>
+
+            <div class="signup-login-redirect">
+                <text> Already have an account? </text><a href="/login">Login</a>
+            </div>
         </form>
     </div>
     

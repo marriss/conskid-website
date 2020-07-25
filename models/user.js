@@ -35,9 +35,14 @@ const User = sequelize.define("users", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+
   resetToken: Sequelize.STRING,
   resetExpirations: Sequelize.DATE,
-  
 });
 
 module.exports = User;

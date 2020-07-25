@@ -1,0 +1,69 @@
+<%- include('includes/head.ejs')%>
+    </head>
+
+    <body class="background">
+        <section id="add" class="container welcome">
+            <div class="form-wrap">
+            <h1>Almost There!</h1>
+
+            <% for (let error of errors) { %>
+                <div class="error">
+                    <p><%= error.text %></p>
+                </div>
+            <% } %>
+            
+            <form action="/welcome" method="POST">
+                <!-- <div class="input-group">
+                <label for="title">Gig Title</label>
+                <input type="text" name="title" id="title" class="input-box" placeholder="eg. Small Wordpress website, React developer"
+                    maxlength="100" value=My New Post>
+                </div> -->
+
+                <div class="input-group">
+                <label for="technologies">Tell us about your skills</label>
+                <input type="text" name="skills" class="input-box" placeholder="eg. javascript, react, photoshop, c++"
+                maxlength="100" value="">
+                </div>
+
+                <div class="input-group">
+                <label for="technologies">Areas of Interest</label>
+                <input type="text" name="profiles" class="input-box" placeholder="eg. AI, Data Science, Development, Designer"
+                maxlength="100" value="">
+                </div>
+
+                <div class="row select-college">
+                    <select class='user-type' name="college">
+                        <option class="option-text" value="college">College</option>
+                        <option class="option-text" value="Indian Institute of Technology Madras">Indian Institute of Technology Madras</option>
+                        <option class="option-text" value="Indian Institute of Technology Delhi">Indian Institute of Technology Delhi</option>
+                        <option class="option-text" value="Indian Institute of Technology Bombay">Indian Institute of Technology Bombay</option>
+                        <option class="option-text" value="Indian Institute of Technology Kanpur">Indian Institute of Technology Kanpur</option>
+                        <option class="option-text" value="Indian Institute of Technology Kharagpur">Indian Institute of Technology Kharagpur</option>
+                        <option class="option-text" value="Indian Institute of Technology Roorkee">Indian Institute of Technology Roorkee</option>
+                        <option class="option-text" value="Indian Institute of Technology Guwahati">Indian Institute of Technology Guwahati</option>
+                        <option class="option-text" value="Indian Institute of Technology Hyderabad">Indian Institute of Technology Hyderabad</option>
+                        <option class="option-text" value="Indian Institute of Technology (BHU) Varanasi">Indian Institute of Technology (BHU) Varanasi</option>
+                        <option class="option-text" value="Indian Institute of Technology (ISM) Dhanbad">Indian Institute of Technology (ISM) Dhanbad</option>
+                        <option class="option-text" value="Indian Institute of Technology Bhubaneswar">Indian Institute of Technology Bhubaneswar</option>
+                        <option class="option-text" value="Indian Institute of Technology Gandhinagar">Indian Institute of Technology Gandhinagar</option>
+                        <option class="option-text" value="Indian Institute of Technology Ropar">Indian Institute of Technology Ropar</option>
+                        <option class="option-text" value="Indian Institute of Technology Patna">Indian Institute of Technology Patna</option>
+                        <option class="option-text" value="Indian Institute of Technology Mandi">Indian Institute of Technology Mandi</option>
+                        <option class="option-text" value="Indian Institute of Technology Jodhpur">Indian Institute of Technology Jodhpur</option>
+                        <option class="option-text" value="Indian Institute of Technology Tirupati">Indian Institute of Technology Tirupati</option>
+                        <option class="option-text" value="Indian Institute of Technology Bhilai">Indian Institute of Technology Bhilai</option>
+                        <option class="option-text" value="Indian Institute of Technology Goa">Indian Institute of Technology Goa</option>
+                        <option class="option-text" value="Indian Institute of Technology Jammu">Indian Institute of Technology Jammu</option>
+                        <option class="option-text" value="Indian Institute of Technology Dharwad">Indian Institute of Technology Dharwad</option>
+                        <option class="option-text" value="Indian Institute of Technology Palakkad">Indian Institute of Technology Palakkad</option>
+                    </select>
+                </div> 
+
+                <input type='hidden' name="_csrf" value="<%= csrfToken %>">
+                <input type="submit" value="Take me to C-ONSKID" class="btn btn-reverse">
+            </form>
+            </div>
+        </section>
+                
+
+    <%- include('includes/end.ejs') %>

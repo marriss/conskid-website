@@ -9,6 +9,10 @@
 
 //*************************** Theme Colours****************************/
 // Define theme colour scheme
+$primaryColor: rgb(24, 207, 168);
+$primaryColor-1: rgb(0, 167, 130);
+$primaryColor-3: rgb(9, 196, 102);
+$primaryColor-4: rgb(19, 167, 0);
 $color-primary: #52ad54;
 $text-color: #010202;
 $text-color-secondary: lighten($text-color, 10%);
@@ -31,8 +35,6 @@ $github: #444;
 $dribbble: #ec4d8b;
 $linkedin: #1e6fba;
 
-
-
 //*************************** Theme Styles ****************************/
 // Import theme styles
 @import "mixins";
@@ -48,3 +50,8 @@ $linkedin: #1e6fba;
 @import "signup";
 @import "login";
 @import "default";
+@import "profile";
+@import "candidates";
+@import "welcome";
+@import "search";
+@import "contact";

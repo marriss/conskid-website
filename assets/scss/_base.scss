@@ -1,3 +1,8 @@
+$primaryColor: rgb(24, 207, 168);
+$primaryColor-1: rgb(0, 167, 130);
+$primaryColor-3: rgb(9, 196, 102);
+$primaryColor-4: rgb(19, 167, 0);
+
 body {
   font-family: "Open Sans", arial, sans-serif;
   color: $text-color;
@@ -9,6 +14,10 @@ body {
 p {
   margin-bottom: 15px;
   line-height: 1.5;
+}
+
+.alert {
+  text-align: center;
 }
 
 a {
@@ -115,14 +124,24 @@ a.btn-cta {
 
 /* ======= Header ======= */
 .header {
+  background-color: white;
   position: fixed;
   width: 100%;
   z-index: 30;
   height: 60px;
   @include transition(none);
+  box-shadow: 0px 0px 4px #000000cf;
+
+  .logo-icon {
+    width: 127px;
+    height: 62px;
+    border-radius: 6px;
+    margin-right: 0;
+    box-shadow: 0 0 4px black;
+  }
 
   &.header-scrolled {
-    background: #fff;
+    background: white;
     @include box-shadow(0 0 4px rgba(0, 0, 0, 0.5));
     a {
       color: $text-color;
@@ -142,7 +161,7 @@ a.btn-cta {
         height: 62px;
         border-radius: 6px;
         margin-right: 0;
-        box-shadow: 0px 1px 5px -1px
+        box-shadow: 0 0 4px black;
       }
     }
     .main-nav .nav .nav-link {
@@ -152,12 +171,12 @@ a.btn-cta {
       }
     }
     .main-nav .nav .nav-link.active {
-      color: $text-color;
+      color: black;
       border-bottom: 4px solid $color-primary;
     }
   }
   a {
-    color: #fff;
+    color: rgb(78, 185, 144);
     @include transition(none);
     &:hover {
       text-decoration: none;
@@ -181,7 +200,6 @@ a.btn-cta {
       height: 62px;
       border-radius: 6px;
       margin-right: 0;
-      
     }
     .highlight {
       font-weight: 800;
@@ -228,16 +246,18 @@ a.btn-cta {
       margin-right: 10px;
 
       .nav-link {
-        color: rgba(256, 256, 256, 0.65);
-        font-weight: 700;
+        color: black;
+        font-weight: 500;
         &.active {
           position: relative;
           background: none;
-          color: #fff;
+          color: black;
         }
         &:hover {
-          color: #fff;
+          color: black;
           background: none;
+          font-weight: 600;
+          border-bottom: 2px solid $color-primary;
         }
         &:focus {
           outline: none;
@@ -251,6 +271,16 @@ a.btn-cta {
 
       &:last-child {
         margin-right: 0;
+      }
+
+      .logout-in-btn {
+        border: 1px solid $primaryColor-1;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background: $primaryColor-1;
+        margin-top: 7.5px;
+        border-radius: 6px;
       }
     }
   }

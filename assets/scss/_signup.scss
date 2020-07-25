@@ -1,0 +1,173 @@
+/* ======= Login Page ======= */
+$primaryColor: rgb(24, 207, 168);
+$primaryColor-1: rgb(0, 167, 130);
+$primaryColor-3: rgb(9, 196, 102);
+$primaryColor-4: rgb(19, 167, 0);
+
+// ====================== Font ======================================
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url("../fonts/poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url("../fonts/poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url("../fonts/poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: Poppins-SemiBold;
+  src: url("../fonts/poppins/Poppins-SemiBold.ttf");
+}
+
+// ============================================================================
+
+body {
+  background-color: #f3eded;
+  font-family: "Open Sans", arial, sans-serif;
+  color: #010202;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.background {
+  background-image: url("../images/defaults/bg-2.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.signup-container {
+  position: relative;
+  top: 132px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .signup-legend {
+    background-image: url(../images/defaults/banner1.png);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 7.5rem;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    font-size: 35px;
+    padding-top: 1rem;
+    color: #03d38c;
+    font-family: sans-serif;
+  }
+
+  .signup-form {
+    position: relative;
+    padding: 2rem;
+    padding-top: 26px;
+    padding-bottom: 26px;
+
+    .signup-form-field {
+      padding: 5px;
+      .left {
+        float: left;
+      }
+      .right {
+        float: right;
+      }
+
+      strong {
+        font-weight: bolder;
+        padding: 18px;
+        padding-right: 22px;
+      }
+    }
+  }
+
+  .signup-form-field {
+    padding: 5px;
+    .user-type {
+      width: 233px;
+      text-align: center;
+      color: #f8f8f8;
+      padding: 13px;
+      margin-left: 1px;
+      width: 100%;
+      font-size: 19px;
+      border-radius: 5px;
+      background-color: $primaryColor;
+      .option-text {
+        text-align: center;
+      }
+    }
+  }
+
+  .signup-login-redirect {
+    position: relative;
+    font-family: Poppins-Regular;
+    padding: -11px;
+    margin-top: 9px;
+    text-align: center;
+  }
+
+  .signup-button {
+    position: relative;
+    font-family: Poppins-Regular;
+    padding: 5px;
+    margin-top: 22px;
+  }
+
+  .form-control-custom {
+    display: block;
+    width: 100%;
+    height: calc(1.76rem + 0.75rem + 2px);
+    padding: 1.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    border: none;
+    background: #c9e5dc4d;
+  }
+
+  .btn {
+    color: #fff;
+    font-family: Poppins-Regular;
+    border-radius: 39px;
+    padding: 10px;
+    width: 6rem;
+    background-color: $primaryColor;
+    &:hover {
+      background-color: rgb(4, 66, 90);
+    }
+  }
+}
