@@ -32,10 +32,11 @@ textarea.style {
   font-size: 13px;
   text-align: center;
   font-weight: 600;
+  margin-left: 6px;
 }
 
-.contact-body {
-  .contact-container {
+.login-body {
+  .login-container {
     position: relative;
     margin-top: 70px;
     margin-left: auto;
@@ -51,8 +52,8 @@ textarea.style {
   h4 {
     font-size: 1.5rem;
     text-align: center;
-    padding: 29px;
-    background: #5cbaa9e6;
+    padding: 20px;
+    background: white;
     border-radius: 5px 5px 0 0;
   }
 
@@ -78,11 +79,13 @@ textarea.style {
 
   .form-control-custom {
     display: block;
-    width: 100%;
+    width: 80%;
     height: calc(1.76rem + 0.75rem + 2px);
     padding: 1.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
+    margin-left: 6px;
+    margin-bottom: 4px;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;

@@ -811,11 +811,12 @@ a.btn-cta {
 
 .team-section .members-wrapper {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 .team-section .item-inner {
   padding: 30px;
+  margin-top: 50px;
   background: #fff;
   border-radius: 8px;
   background-clip: padding-box;
@@ -943,9 +944,10 @@ textarea.style {
   font-size: 13px;
   text-align: center;
   font-weight: 600;
+  margin-left: 6px;
 }
 
-.contact-body .contact-container {
+.login-body .login-container {
   position: relative;
   margin-top: 70px;
   margin-left: auto;
@@ -957,25 +959,25 @@ textarea.style {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.contact-body h4 {
+.login-body h4 {
   font-size: 1.5rem;
   text-align: center;
-  padding: 29px;
-  background: #5cbaa9e6;
+  padding: 20px;
+  background: white;
   border-radius: 5px 5px 0 0;
 }
 
-.contact-body .contact-form {
+.login-body .contact-form {
   padding: 2rem;
   padding-top: 8px;
   padding-bottom: 50px;
 }
 
-.contact-body .contact-form .contact-form-field {
+.login-body .contact-form .contact-form-field {
   padding: 5px;
 }
 
-.contact-body .alert {
+.login-body .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 0.7rem;
@@ -985,13 +987,15 @@ textarea.style {
   left: 5px;
 }
 
-.contact-body .form-control-custom {
+.login-body .form-control-custom {
   display: block;
-  width: 100%;
+  width: 80%;
   height: calc(1.76rem + 0.75rem + 2px);
   padding: 1.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
+  margin-left: 6px;
+  margin-bottom: 4px;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -1009,7 +1013,7 @@ textarea.style {
   background: #c9e5dc4d;
 }
 
-.contact-body .btn-contact {
+.login-body .btn-contact {
   background-color: #00a782;
   border: none;
   padding: 10px;
@@ -1024,7 +1028,7 @@ textarea.style {
           box-shadow: 0 0 7px;
 }
 
-.contact-body .btn-contact:hover {
+.login-body .btn-contact:hover {
   background-color: #04425a;
 }
 
@@ -1043,6 +1047,15 @@ textarea.style {
   .header.header-scrolled .main-nav .nav .nav-link.active {
     color: #52ad54;
     border: none;
+  }
+  div.overlay {
+    opacity: .9;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 256px;
+    width: 256px;
   }
   .main-nav .navbar-collapse .nav-item {
     margin-right: 0;
@@ -1128,7 +1141,7 @@ textarea.style {
     top: 130px;
   }
   .hero-carousel .carousel-inner .item-content-inner {
-    max-width: 500px;
+    max-width: 700px;
   }
 }
 
@@ -1274,16 +1287,13 @@ body.background {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   border: none;
   background: #c9e5dc4d;
 }
@@ -1337,7 +1347,7 @@ body {
 
 .login-body .login-container {
   position: relative;
-  margin-top: 177px;
+  margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
   width: 26rem;
@@ -1413,16 +1423,13 @@ body {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   border: none;
   background: #c9e5dc4d;
 }
@@ -1532,12 +1539,10 @@ body {
   text-align: center;
   vertical-align: baseline;
   border-radius: 0.25rem;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   background: #abe1d9;
 }
 
@@ -1570,6 +1575,7 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   height: 11rem;
+  width: 11rem;
   border-radius: 100%;
 }
 
@@ -1736,13 +1742,12 @@ body {
 }
 
 .background-profile .main-body .main-box .img-upload .img-upload-form .choose {
-  font-size: 13px;
+  font-size: 10px;
   text-decoration: none;
   color: #1c7468;
   border: none;
   width: 100%;
   margin-bottom: 8px;
-  background: #a2ddd7;
   border-radius: 5px;
   padding-top: 13px;
   height: 49px;
@@ -1759,8 +1764,8 @@ body {
   border: none;
   padding: 6px 12px;
   border-bottom: 4px solid;
-  -webkit-transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
-  transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+  -webkit-transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+  transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
   outline: none;
 }
 
@@ -2411,12 +2416,10 @@ body {
   padding: 0.25em 0.4em;
   line-height: 1;
   text-align: center;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   margin-top: 4px;
   font-size: 17px;
   font-weight: 500;
@@ -2930,9 +2933,10 @@ textarea.style {
   font-size: 13px;
   text-align: center;
   font-weight: 600;
+  margin-left: 6px;
 }
 
-.contact-body .contact-container {
+.login-body .login-container {
   position: relative;
   margin-top: 70px;
   margin-left: auto;
@@ -2944,25 +2948,25 @@ textarea.style {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.contact-body h4 {
+.login-body h4 {
   font-size: 1.5rem;
   text-align: center;
-  padding: 29px;
-  background: #5cbaa9e6;
+  padding: 20px;
+  background: white;
   border-radius: 5px 5px 0 0;
 }
 
-.contact-body .contact-form {
+.login-body .contact-form {
   padding: 2rem;
   padding-top: 8px;
   padding-bottom: 50px;
 }
 
-.contact-body .contact-form .contact-form-field {
+.login-body .contact-form .contact-form-field {
   padding: 5px;
 }
 
-.contact-body .alert {
+.login-body .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 0.7rem;
@@ -2972,13 +2976,15 @@ textarea.style {
   left: 5px;
 }
 
-.contact-body .form-control-custom {
+.login-body .form-control-custom {
   display: block;
-  width: 100%;
+  width: 80%;
   height: calc(1.76rem + 0.75rem + 2px);
   padding: 1.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
+  margin-left: 6px;
+  margin-bottom: 4px;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -2996,7 +3002,7 @@ textarea.style {
   background: #c9e5dc4d;
 }
 
-.contact-body .btn-contact {
+.login-body .btn-contact {
   background-color: #00a782;
   border: none;
   padding: 10px;
@@ -3011,7 +3017,7 @@ textarea.style {
           box-shadow: 0 0 7px;
 }
 
-.contact-body .btn-contact:hover {
+.login-body .btn-contact:hover {
   background-color: #04425a;
 }
 /*# sourceMappingURL=styles.css.map */

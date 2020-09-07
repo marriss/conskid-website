@@ -118,6 +118,7 @@ $primaryColor-4: rgb(19, 167, 0);
     margin-top: 10px;
     margin-bottom: 10px;
     height: 11rem;
+    width: 11rem;
     border-radius: 100%;
   }
   #user-profile .profile-label {
@@ -255,13 +256,13 @@ $primaryColor-4: rgb(19, 167, 0);
       .img-upload-form {
         padding: 1px;
         .choose {
-          font-size: 13px;
+          font-size: 10px;
           text-decoration: none;
           color: #1c7468;
           border: none;
           width: 100%;
           margin-bottom: 8px;
-          background: #a2ddd7;
+         
           border-radius: 5px;
           padding-top: 13px;
           height: 49px;

@@ -17,13 +17,13 @@
             <div class="col-lg-3 col-md-4 col-sm-4">
                 <div class="main-box clearfix">
                     <h2><%= userInfo.first_name%> <%= userInfo.last_name %> </h2>
-
-                    <% if(profile.imgUrl) { %>
-                    <% if(isPersonal) { %><img src="./images/profileImages/<%= profile.imgUrl %>" alt=""
-                        class="profile-img img-responsive center-block"><% } %>
-
+                    <% if(profile.imgUrl) { %>                       
+                    <% if(isPersonal) { %>
+                        <img src="./images/profileImages/<%= profile.imgUrl %>" alt=""
+                        class="profile-img img-responsive center-block "><% } %>
+                        
                     <% if(!isPersonal) { %><img src="../images/profileImages/<%= profile.imgUrl %>" alt=""
-                        class="profile-img img-responsive center-block"><% } %>
+                        class="profile-img img-responsive center-block"><% } %>                   
                     <% } else {%>
                         <% if(isPersonal) { %><img src="./images/defaults/candidate-default.png" alt=""
                         class="profile-img img-responsive center-block"><% } %>
@@ -35,8 +35,8 @@
                      
                     <% if(isPersonal) { %>
                     <div class="img-upload">
-                        <form class="img-upload-form" action="/imgUpload" method="post" enctype="multipart/form-data">
-                            <input  class="form-control choose" type="file" name="image" id="image">
+                        <form class="img-upload-form " action="/imgUpload" method="post" enctype="multipart/form-data">
+                            <input  class="form-control-custom choose" type="file" name="image" id="image">
                             <input type='hidden' name="_csrf" value="<%= csrfToken %>">
                             <button type="submit" class="btn btn-primary choose-btn">Upload</button>
                         </form>
@@ -214,8 +214,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
-                                </form>
-                                
+                                </form>                                
                             </div>
                         </div>
                     </div>

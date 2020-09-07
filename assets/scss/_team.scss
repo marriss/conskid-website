@@ -28,16 +28,19 @@
         border-radius: 100%;
     }
     .members-wrapper{
+        // margin-top: 30px;
         max-width: 800px;
-        margin: 0 auto;
+        margin: 30px auto;
     }
     
     .item-inner {
         padding: 30px;
+        margin-top: 50px;        
         background: #fff;
         @include border-radius(8px);
         height: 100%;
     }
+    
     .member-name {
         font-size: 18px;
         font-weight: 700;

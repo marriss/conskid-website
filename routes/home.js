@@ -46,7 +46,7 @@ router.post(
 
     body(
       "password",
-      "Please Enter a password with minimum 6 characters"
+      "Please! Enter a password with minimum 6 characters"
     ).isLength({ min: 6 }),
 
     body("confirm_password").custom((value, { req }) => {

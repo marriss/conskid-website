@@ -5,16 +5,28 @@
     <%- include('../includes/navigation.ejs') %>
 
     <div class="container candidate-container">
-
-        <% if(msg) { %>
-    <div class="msg">
-        <span class="error-message">
-        
-            <%= msg %>
-            
-        </span>
-    </div>
-    <% } %>
+    <% if(msg) {%>      
+        <div class="msg">
+            <% if(msg == 'Invalid Captcha! Please try again.') { %>
+            <span class="alert alert-danger">
+                <%=msg%>
+            </span>
+            <%} else {%>
+                <!-- <span class="alert alert-success"> -->
+                    <div class="modal-content-wrapper modal-wrapper-md " style = "box-sizing: content-box">
+                        <div role="alert" class="with-icon m0 alert alert-success">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <div class="content">
+                                <h3>Thank for your response</h3>
+                                <p>Our team will contact you shortly. Please check your email for confirmation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </span> -->
+            <% } %>
+        </div>
+        <% } %>
 
 
         <section id="search" class="search-wrap">

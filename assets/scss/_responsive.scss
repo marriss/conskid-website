@@ -15,7 +15,12 @@
         color: $color-primary;
         border: none;
     }
-
+    div.overlay {
+        opacity: .9;
+        background-color: black;
+        position: absolute;
+        left: 0; top: 0; height: 256px; width: 256px;
+    }
     
     .main-nav .navbar-collapse .nav-item {
         margin-right: 0;
@@ -99,7 +104,7 @@
     }
     
 
-
+ 
 }
 
 // Large devices (desktops, 992px and up)
@@ -118,7 +123,7 @@
         top: 130px;
     }
     .hero-carousel .carousel-inner .item-content-inner {
-        max-width: 500px;
+        max-width: 700px;
     }
 
     

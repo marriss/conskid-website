@@ -15,7 +15,7 @@ const sessionStore = new MySQLStore({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "conskidindia#123",
+  password: "shivani@2",
   database: "conskid",
 });
 

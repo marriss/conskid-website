@@ -85,6 +85,7 @@ exports.postLogin = (req, res, next) => {
           errorMessage: "Invalid Email or Password.",
           oldInput: { email: email },
           home: false,
+          successMessage:"",
         });
       }
       bcrypt.compare(password, foundUser.password).then((doMatch) => {
@@ -117,6 +118,7 @@ exports.postLogin = (req, res, next) => {
           errorMessage: "Invalid Email or Password.",
           oldInput: { email: email },
           home: false,
+          successMessage:"",
         });
       });
     })

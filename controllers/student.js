@@ -51,6 +51,7 @@ exports.getStudentProfile = async (req, res, next) => {
             skills: "",
             profiles: "",
             userId: req.user.id,
+            // imgUrl: req.user.imgUrl,
           }).then((thing) => {
             things = thing;
           });
@@ -503,7 +504,7 @@ exports.postUploadImage = (req, res, next) => {
     res.redirect("/stu-profile");
   } else {
     const imagePath = req.user.id + "-" + req.file.originalname;
-    ProfileHeadline.findByPk(req.user.id)
+    ProfileHeadline.findOne({ where: { userId: req.user.id } })
       .then((profile) => {
         console.log(profile);
         profile.imgUrl = imagePath;

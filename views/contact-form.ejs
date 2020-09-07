@@ -1,13 +1,17 @@
 <%- include('includes/head.ejs')%>
     </head>
 
-    <body class="contact-body">
+    <body class="login-body">
+<%- include('./includes/navigation.ejs') %>
 
-
-        <div class="contact-container contact">
-
+        <div class="login-container contact">
+           
+            <!--  -->
+            <div class="login-legend">
+                <!-- C-ONSKID -->
+                
+            </div>
             <h4>SEND US A MESSAGE</h4>
-
             <form class="contact-form" action="/contact-form" method="post">
 
                 <div class="contact-form-field">
@@ -23,7 +27,7 @@
                 </div>
 
                 <div class="contact-form-field">
-                    <textarea class="style" rows="10" cols="57" type="text" name="message" placeholder="Type your message"></textarea>
+                    <textarea class="style" rows="10" cols="46" type="text" name="message" placeholder="Type your message"></textarea>
                 </div>
 
                 <div>
