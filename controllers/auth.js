@@ -97,9 +97,7 @@ exports.postLogin = (req, res, next) => {
             console.log(err);
 
             foundUser.getProfileHeadline().then((profile) => {
-              if (profile) {
-                // console.log(profile);
-                console.log("vishal");
+              if (profile) {               
                 return res.redirect("/");
               } else {
                 if (foundUser.type === "student") {
@@ -208,9 +206,7 @@ exports.postSignUp = (req, res, next) => {
           "<h1 style = 'color: green'> Welcome to C-onskid</h1></br><h3> Your Account has been successfully Hacked</h3>",
       });
     })
-    .catch((err) => console.log(err));
-  // })
-  // .catch((err) => console.log(err));
+    .catch((err) => console.log(err));  
 };
 
 exports.getResetPassword = (req, res, next) => {
@@ -235,17 +231,13 @@ exports.postResetPassword = (req, res, next) => {
       return res.redirect("/reset-password");
     }
 
-    const token = buffer.toString("hex");
-
-    // console.log(req.body.email);
+    const token = buffer.toString("hex");   
     User.findOne({ where: { email: req.body.email } })
       .then((foundUser) => {
         if (!foundUser) {
           req.flash("error", "No Account with that email!");
           return res.redirect("/reset-password");
-        }
-
-        // console.log(Date.now());
+        }        
         foundUser.resetToken = token;
         foundUser.resetExpirations = Date.now() + 3600000;
         return foundUser.save();
@@ -277,8 +269,7 @@ exports.getNewPassword = (req, res, next) => {
       ],
     },
   })
-    .then((foundUser) => {
-      // console.log(foundUser);
+    .then((foundUser) => {      
       if (foundUser) {
         let message = req.flash("error");
         if (message.length > 0) {
@@ -293,8 +284,7 @@ exports.getNewPassword = (req, res, next) => {
           passwordToken: token,
           home: false,
         });
-      } else {
-        // console.log("message");
+      } else {        
         req.flash("error", "Session Timeout! Please try again");
         res.redirect("/login");
       }

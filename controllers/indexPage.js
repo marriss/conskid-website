@@ -34,8 +34,6 @@ exports.postWelcome = async (req, res, next) => {
   let { skills, profiles, college } = req.body;
 
   let errors = [];
-
-  // Validate Fields
   if (!skills) {
     errors.push({ text: "Please add atleast one skill" });
   }
@@ -62,10 +60,7 @@ exports.postWelcome = async (req, res, next) => {
     let x = skills.split(",");
     let y = profiles.split(",");
     let skillString = "",
-      profileString = "";
-
-      console.log(x,y);
-
+      profileString = "";     
     x.forEach((skill) => {
       if(skill.length>0){
       skillString += skill[0].toUpperCase() + skill.slice(1) + ", ";

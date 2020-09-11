@@ -30,8 +30,7 @@ exports.getEmployerDashboard = (req, res, next) => {
 
 exports.getCandidates = (req, res, next) => {
   ProfileHeadline.findAll({ where: { type: "student" } })
-    .then((candidates) => {
-      // console.log(req.flash("msg")[0]);
+    .then((candidates) => {     
       res.render("employers/candidates", {
         title: "Candidates",
         home: false,
@@ -66,13 +65,6 @@ exports.postSearch = (req, res, next) => {
     });
 
     ProfileHeadline.findAll({
-      // where: {
-      //   type: "student",
-      //   [Op.or]: [
-      //     { skills: { [Op.like]: "%" + term + "%" } },
-      //     { profiles: { [Op.like]: "%" + term + "%" } },
-      //   ],
-      // },
       where: {
         type: "student",
         [Op.or]: [

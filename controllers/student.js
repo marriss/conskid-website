@@ -50,8 +50,7 @@ exports.getStudentProfile = async (req, res, next) => {
             certificationQty: 0,
             skills: "",
             profiles: "",
-            userId: req.user.id,
-            // imgUrl: req.user.imgUrl,
+            userId: req.user.id,           
           }).then((thing) => {
             things = thing;
           });
@@ -65,11 +64,8 @@ exports.getStudentProfile = async (req, res, next) => {
       .getEducations()
       .then((education) => {
         if (!education) {
-          educations = [];
-          // console.log(education);
-          // console.log("The length: " + education.length);
-        } else {
-          // console.log(education.length);
+          educations = [];          
+        } else {          
           educations = education;
           educations.sort((a, b) => (a.startYear < b.endYear ? 1 : -1));
         }
@@ -215,8 +211,7 @@ exports.postAddEducation = (req, res, next) => {
 };
 
 exports.postEditEducation = (req, res, next) => {
-  const eduId = req.body.educationId;
-  console.log(eduId);
+  const eduId = req.body.educationId;  
   Education.findByPk(eduId)
     .then((education) => {
       education.school = req.body.school;
@@ -343,8 +338,7 @@ exports.postEditAchievement = (req, res, next) => {
       achievement.description = req.body.description;
       return achievement.save();
     })
-    .then((result) => {
-      // console.log(result);
+    .then((result) => {      
       res.redirect("/stu-profile");
     })
     .catch((err) => console.log(err));
@@ -405,8 +399,7 @@ exports.postEditProject = (req, res, next) => {
       project.description = req.body.description;
       return project.save();
     })
-    .then((result) => {
-      // console.log(result);
+    .then((result) => {      
       res.redirect("/stu-profile");
     })
     .catch((err) => console.log(err));
@@ -467,8 +460,7 @@ exports.postEditCertification = (req, res, next) => {
       certification.description = req.body.description;
       return certification.save();
     })
-    .then((result) => {
-      // console.log(result);
+    .then((result) => {     
       res.redirect("/stu-profile");
     })
     .catch((err) => console.log(err));
@@ -505,8 +497,7 @@ exports.postUploadImage = (req, res, next) => {
   } else {
     const imagePath = req.user.id + "-" + req.file.originalname;
     ProfileHeadline.findOne({ where: { userId: req.user.id } })
-      .then((profile) => {
-        console.log(profile);
+      .then((profile) => {        
         profile.imgUrl = imagePath;
         return profile.save();
       })
@@ -520,8 +511,6 @@ exports.postUploadImage = (req, res, next) => {
 exports.getStudentDashboard = (req, res, next) => {
   res.render("students/stu-dashboard", {
     title: "Dashboard",
-    home: false,
-    // isAuthenticated: req.session.isLoggedIn,
-    // user: req.session.user,
+    home: false,    
   });
 };
